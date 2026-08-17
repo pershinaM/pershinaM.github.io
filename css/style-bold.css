@@ -1,0 +1,333 @@
+/* ---------- tokens ----------
+   Riso-ink neon on near-black paper — a real, justifiable "unexpected"
+   move: fluorescent pink / electric cyan / acid lime, the way a two- or
+   three-colour risograph print pops off dark stock. Distinct from both the
+   warm ember-dark and parchment-light variants, not just a random rainbow. */
+:root{
+  --bg: #0b0a12;
+  --bg-soft: #16131f;
+  --text: #f5f4f0;
+  --muted: #918d9e;
+  --line: #2a2636;
+  --accent-1: #ff2e9a;
+  --accent-2: #00e5ff;
+  --accent-3: #dfff3c;
+  --gradient: radial-gradient(circle at 50% 50%, var(--accent-1) 0%, var(--accent-2) 45%, var(--accent-3) 70%, transparent 85%);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:auto; }
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+
+.mono{ font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.04em; text-transform:uppercase; }
+
+a{ color:inherit; text-decoration:none; }
+
+/* subtle grain overlay for texture */
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:50;
+  opacity:0.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- top navbar ---------- */
+.navbar{
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.5rem 2.25rem;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.social-nav{ display:flex; gap:1.25rem; }
+.social-nav a{ color:var(--muted); transition:color .25s ease; }
+.social-nav a:hover{ color:var(--accent-2); }
+
+/* progress bar: fills with the active slide's own accent color */
+.progress-bar{
+  position:fixed; top:0; left:0; height:2px; z-index:45;
+  width:0%;
+  background:var(--progress-color, var(--accent-2));
+  transition:background-color .5s ease;
+}
+
+/* ---------- horizontal scroll rig ----------
+   #smooth-wrapper is a viewport-pinned native horizontal scroll container.
+   Touch/trackpad users can swipe it directly; JS additionally jacks the
+   vertical wheel into eased scrollLeft moves for the inertia feel. Driving
+   real scrollLeft (rather than a transform on a huge child) avoids a
+   compositor bug where large translated layers render as solid black. */
+#smooth-wrapper{
+  position:fixed;
+  inset:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+#smooth-wrapper::-webkit-scrollbar{ display:none; }
+#smooth-content{
+  display:flex;
+  flex-direction:row;
+  width:max-content;
+  height:100%;
+}
+
+/* ---------- slide (shared full-bleed screen) ---------- */
+.slide{
+  position:relative;
+  flex:0 0 100vw;
+  width:100vw;
+  height:100svh;
+  max-width:none;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 1.5rem;
+}
+
+.hero__grid{
+  position:absolute; inset:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+.hero__cell{ position:relative; overflow:hidden; }
+.hero__grid img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:grayscale(0.4) contrast(1.05) brightness(0.55);
+  animation:kenburns 18s ease-in-out infinite alternate;
+}
+.hero__cell:nth-child(2) img{ animation-delay:-4.5s; }
+.hero__cell:nth-child(3) img{ animation-delay:-9s; }
+.hero__cell:nth-child(4) img{ animation-delay:-13.5s; }
+@keyframes kenburns{
+  0%{ transform:scale(1); }
+  100%{ transform:scale(1.12); }
+}
+.hero__tint{
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, var(--accent-1), var(--accent-2) 50%, var(--accent-3));
+  mix-blend-mode:color;
+  opacity:0.8;
+}
+.hero__scrim{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 46rem 42rem at 50% 55%, color-mix(in srgb, var(--bg) 82%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 60%, transparent 82%),
+    linear-gradient(180deg, var(--bg) 0%, transparent 22%, transparent 70%, var(--bg) 100%);
+}
+
+.hero__inner{ position:relative; z-index:2; text-align:center; max-width:56rem; }
+
+.eyebrow{ color:var(--muted); margin-bottom:1.5rem; }
+
+.hero__title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.8rem, 9vw, 6.5rem);
+  line-height:0.92;
+  letter-spacing:-0.02em;
+}
+.hero__title .line{ display:block; }
+.hero__title .dot{ color:var(--accent-2); }
+
+.hero__sub{
+  margin:1.75rem auto 0;
+  max-width:34rem;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+.chip-row{ margin-top:2rem; display:flex; gap:0.75rem; flex-wrap:wrap; justify-content:center; }
+.chip{
+  border:1px solid var(--line);
+  padding:0.4rem 0.75rem;
+  border-radius:2px;
+  color:var(--muted);
+}
+
+.hero__tools{ margin-top:1.75rem; color:var(--muted); }
+
+/* ---------- scroll cue (fixed, points horizontally) ---------- */
+.scroll-cue{
+  position:fixed; bottom:2rem; right:2.25rem;
+  display:flex; align-items:center; gap:0.75rem;
+  color:var(--muted); z-index:35;
+  opacity:1;
+  transition:opacity .4s ease;
+}
+.scroll-cue.is-hidden{ opacity:0; pointer-events:none; }
+.scroll-cue__line{
+  width:2.5rem; height:1px;
+  background:linear-gradient(90deg, transparent, var(--muted));
+  animation:scrollpulse-h 2s ease-in-out infinite;
+}
+@keyframes scrollpulse-h{ 0%,100%{ opacity:0.3; transform:translateX(0); } 50%{ opacity:1; transform:translateX(4px); } }
+
+/* ---------- work: color-block panels with an offset photo card ----------
+   Each project gets its own deep, tint-derived background wash (not just an
+   image with a gradient over it) so the beats read as distinct color moments
+   the way the reference's alternating section backgrounds do. An oversized
+   statement sits behind an offset "card" photo — collage, not full-bleed. */
+.panel{
+  background:
+    radial-gradient(ellipse 60rem 60rem at 15% 20%, color-mix(in srgb, var(--tint) 22%, transparent), transparent 70%),
+    var(--bg);
+}
+.panel__bg{ position:absolute; inset:0; z-index:0; }
+
+.panel__statement{
+  position:absolute;
+  left:2rem; right:2rem; top:5.5rem;
+  z-index:1;
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.4rem, 7vw, 6rem);
+  line-height:0.98;
+  letter-spacing:-0.01em;
+  color:color-mix(in srgb, var(--tint) 55%, var(--text));
+  opacity:0.9;
+  will-change:transform;
+}
+
+.panel__photo{
+  position:absolute;
+  left:50%; top:52%;
+  width:min(46rem, 62vw);
+  aspect-ratio:4/3;
+  transform:translate(-50%,-50%) rotate(-2.5deg);
+  z-index:2;
+  overflow:hidden;
+  border-radius:4px;
+  box-shadow:0 2rem 5rem -1.5rem rgba(0,0,0,0.7);
+  border:1px solid color-mix(in srgb, var(--tint) 30%, var(--line));
+  will-change:transform;
+}
+.panel__img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:grayscale(0.1) contrast(1.03) saturate(1.05);
+}
+
+.panel__caption{
+  position:absolute; left:2rem; bottom:2rem; z-index:3;
+  display:flex; align-items:baseline; gap:1.25rem; flex-wrap:wrap;
+}
+.panel__index{
+  color:rgba(245,241,234,0.6);
+  display:inline-block;
+  transition:color .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.panel.is-active .panel__index{ color:var(--tint); transform:scale(1.15); }
+
+.panel__title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1.3rem, 2.6vw, 2rem);
+  color:var(--text);
+  overflow:hidden;
+}
+.panel__title .word-wrap{ display:inline-block; overflow:hidden; vertical-align:top; }
+.panel__title .word{
+  display:inline-block;
+  transform:translateY(105%);
+  transition:transform .7s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--i, 0) * 70ms);
+}
+.panel.is-active .panel__title .word{ transform:translateY(0); }
+
+.panel__tag{
+  color:rgba(245,241,234,0.7);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .5s ease .3s, transform .5s ease .3s;
+}
+.panel.is-active .panel__tag{ opacity:1; transform:translateY(0); }
+
+/* ---------- contact ---------- */
+.contact{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:0 1.5rem;
+}
+.contact__title{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.2rem, 5.5vw, 4rem);
+  line-height:1.05;
+  letter-spacing:-0.01em;
+  margin-bottom:2.25rem;
+}
+.grad-text{
+  background:linear-gradient(90deg, var(--accent-1), var(--accent-3));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.contact__email{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:clamp(1rem, 2.2vw, 1.4rem);
+  border-bottom:1px solid var(--line);
+  padding-bottom:0.5rem;
+  transition:color .25s ease, border-color .25s ease;
+}
+.contact__email:hover{ color:var(--accent-2); border-color:var(--accent-2); }
+.contact__socials{ margin-top:2.25rem; display:flex; gap:1.5rem; justify-content:center; }
+.contact__socials a{ color:var(--muted); transition:color .25s ease; }
+.contact__socials a:hover{ color:var(--accent-2); }
+.contact__footer{
+  position:absolute; left:0; right:0; bottom:2rem;
+  display:flex; justify-content:center; gap:2rem;
+  color:var(--muted);
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 760px){
+  .navbar{ padding:1.25rem; }
+  .social-nav{ gap:0.75rem; }
+  .panel__caption{ left:1.25rem; bottom:1.25rem; }
+  .contact__footer{ flex-direction:column; align-items:center; gap:0.4rem; bottom:1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{ transition:none; opacity:1; transform:none; }
+  .scroll-cue__line{ animation:none; }
+  .hero__grid img{ animation:none; }
+  .panel.is-active .panel__media::after{ animation:none; }
+  .panel__title .word{ transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+}
