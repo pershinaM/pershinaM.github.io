@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maria Pershin — Portfolio Drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg:#0a0908;
+    --text:#f5f1ea;
+    --muted:#8a8478;
+    --line:#262420;
+    --accent-1:#ff3d2e;
+    --accent-2:#ff6b35;
+    --accent-3:#f7b733;
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Inter", sans-serif;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+  }
+  .mono{ font-family:"JetBrains Mono", monospace; letter-spacing:0.04em; text-transform:uppercase; }
+  .eyebrow{ font-size:0.75rem; color:var(--muted); margin-bottom:1.25rem; }
+  h1{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:600;
+    font-size:clamp(2rem, 6vw, 3.4rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    text-align:center;
+    margin-bottom:0.75rem;
+  }
+  .dot{ color:var(--accent-2); }
+  p.sub{
+    color:var(--muted);
+    text-align:center;
+    max-width:28rem;
+    margin-bottom:3rem;
+    font-size:0.95rem;
+  }
+  .options{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:1rem;
+    width:100%;
+    max-width:60rem;
+  }
+  .option{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+    padding:1.75rem 1.5rem;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#121110;
+    text-decoration:none;
+    color:var(--text);
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .option:hover{ transform:translateY(-3px); }
+  .option::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(135deg, var(--accent-1), var(--accent-2) 50%, var(--accent-3));
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .option:hover::before{ opacity:0.08; }
+  .option__index{ font-size:0.7rem; color:var(--muted); }
+  .option__title{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:500;
+    font-size:1.3rem;
+  }
+  .option__desc{ font-size:0.85rem; color:var(--muted); line-height:1.4; }
+  .option__cue{
+    margin-top:0.5rem;
+    font-size:0.7rem;
+    color:var(--accent-2);
+  }
+  footer{
+    margin-top:3rem;
+    color:var(--muted);
+    font-size:0.7rem;
+  }
+  @media (max-width:700px){
+    .options{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <p class="mono eyebrow">[MP_26 — PROTOTYPES]</p>
+  <h1>Maria Pershin<span class="dot">.</span></h1>
+  <p class="sub">Three working drafts of the same portfolio concept — pick one to explore.</p>
+
+  <div class="options">
+    <a class="option" href="index-vertical.html">
+      <span class="mono option__index">01</span>
+      <span class="option__title">Vertical scroll</span>
+      <span class="option__desc">Classic top-to-bottom layout with full-bleed image panels and inertia scroll.</span>
+      <span class="mono option__cue">[OPEN →]</span>
+    </a>
+    <a class="option" href="index-horizontal.html">
+      <span class="mono option__index">02</span>
+      <span class="option__title">Horizontal scroll</span>
+      <span class="option__desc">Wheel drives sideways motion through hero, work and contact as one sequence.</span>
+      <span class="mono option__cue">[OPEN →]</span>
+    </a>
+    <a class="option" href="test.html">
+      <span class="mono option__index">03</span>
+      <span class="option__title">Animation test</span>
+      <span class="option__desc">Live sandbox for tuning the scroll easing and motion feel.</span>
+      <span class="mono option__cue">[OPEN →]</span>
+    </a>
+  </div>
+
+  <footer class="mono">© 2026 Maria Pershin</footer>
+
+</body>
+</html>
