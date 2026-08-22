@@ -3,370 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maria Pershin — Graphic &amp; Visual Designer</title>
-<meta name="description" content="Selected work by Maria Pershin — game iconography, character illustration, website redesigns and advertising key visuals.">
+<title>Maria Pershin — Portfolio Drafts</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{ margin:0; padding:0; box-sizing:border-box; }
   :root{
-    --canvas:#e7e8ea;        /* cool porcelain gallery wall */
-    --canvas-2:#dcdde0;
-    --ink:#15161a;
-    --muted:#6b6d75;
-    --line:rgba(20,22,28,0.10);
-    --panel-dark:#0d0d10;
-    --panel-light:#f5f5f3;
-    --accent:#1b3fd1;        /* egyptian cobalt, echoed from the icon work */
-    --radius:16px;
-    --gap:14px;
-    --unit:9.4rem;           /* bento base row */
+    --bg:#0a0908;
+    --text:#f5f1ea;
+    --muted:#8a8478;
+    --line:#262420;
+    --accent-1:#ff3d2e;
+    --accent-2:#ff6b35;
+    --accent-3:#f7b733;
   }
-
-  html{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
   body{
-    background:var(--canvas);
-    color:var(--ink);
+    background:var(--bg);
+    color:var(--text);
     font-family:"Inter", sans-serif;
-    line-height:1.5;
     min-height:100svh;
-    background-image:
-      radial-gradient(120% 90% at 85% -10%, rgba(27,63,209,0.06), transparent 60%),
-      radial-gradient(90% 70% at -5% 110%, rgba(0,0,0,0.05), transparent 55%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
   }
-
-  .wrap{ max-width:1360px; margin:0 auto; padding:clamp(1.25rem,3.5vw,2.75rem); }
-
-  /* ---------- masthead ---------- */
-  .masthead{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    gap:2rem; flex-wrap:wrap;
-    padding-bottom:1.4rem; margin-bottom:1.6rem;
-    border-bottom:1px solid var(--line);
-  }
-  .brand{ display:flex; flex-direction:column; gap:0.55rem; }
-  .brand h1{
-    font-family:"Archivo", sans-serif;
-    font-weight:900;
-    font-size:clamp(2.2rem, 5.6vw, 4rem);
-    line-height:0.92;
-    letter-spacing:-0.035em;
-    text-transform:uppercase;
-  }
-  .brand h1 .dot{ color:var(--accent); }
-  .brand .role{
-    font-family:"Space Mono", monospace;
-    font-size:0.72rem;
-    letter-spacing:0.22em;
-    text-transform:uppercase;
-    color:var(--muted);
-  }
-  .intro{ max-width:23rem; }
-  .intro p{
-    font-size:0.98rem;
-    color:var(--ink);
-  }
-  .intro .contact{
-    margin-top:0.85rem;
-    display:flex; gap:1.1rem; flex-wrap:wrap;
-    font-family:"Space Mono", monospace;
-    font-size:0.72rem; letter-spacing:0.05em;
-  }
-  .intro .contact a{
-    color:var(--muted); text-decoration:none;
-    border-bottom:1px solid transparent;
-    transition:color .2s, border-color .2s;
-  }
-  .intro .contact a:hover{ color:var(--accent); border-color:var(--accent); }
-
-  /* section marker line */
-  .marker{
-    display:flex; align-items:center; gap:0.9rem;
-    margin:0 0 1.1rem;
-    font-family:"Space Mono", monospace;
-    font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--muted);
-  }
-  .marker::after{ content:""; flex:1; height:1px; background:var(--line); }
-
-  /* ---------- bento ---------- */
-  .bento{
-    display:grid;
-    grid-template-columns:repeat(6, 1fr);
-    grid-auto-rows:var(--unit);
-    grid-auto-flow:dense;
-    gap:var(--gap);
-  }
-  .tile{
-    position:relative;
-    overflow:hidden;
-    border-radius:var(--radius);
-    border:1px solid var(--line);
-    background:var(--panel-light);
-    text-decoration:none;
-    color:inherit;
-    isolation:isolate;
-    box-shadow:0 1px 2px rgba(16,18,24,0.05);
-    transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
-  }
-  .tile.dark{ background:var(--panel-dark); }
-  .tile.phones{ background:#090909; }
-  .tile img{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:cover; object-position:center;
-    display:block;
-    transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .4s ease;
-  }
-  .tile.fit img{ object-fit:contain; padding:3.5%; }
-  .tile.top img{ object-position:50% 20%; }
-
-  /* spans — even 2-row bands, tessellates gap-free on 6 cols */
-  .s-icon   { grid-column:span 4; grid-row:span 2; }
-  .s-hero   { grid-column:span 2; grid-row:span 2; }
-  .s-kmain  { grid-column:span 3; grid-row:span 2; }
-  .s-kset   { grid-column:span 3; grid-row:span 2; }
-  .s-phones { grid-column:span 2; grid-row:span 2; }
-  .s-quad   { grid-column:span 2; grid-row:span 2; }
-  .s-photo  { grid-column:span 2; grid-row:span 2; }
-  .s-laptop { grid-column:span 3; grid-row:span 2; }
-  .s-info   { grid-column:span 3; grid-row:span 2; }
-
-  /* text tile */
-  .tile.info{
-    background:var(--panel-dark);
-    display:flex; flex-direction:column; justify-content:space-between;
-    padding:1.5rem 1.6rem;
-    color:#f4f4f3;
-  }
-  .tile.info .kicker{
-    font-family:"Space Mono", monospace;
-    font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase;
-    color:#9aa4d6;
-  }
-  .tile.info .statement{
-    font-family:"Archivo", sans-serif; font-weight:700;
-    font-size:clamp(1.2rem, 2.2vw, 1.6rem); line-height:1.12;
-    letter-spacing:-0.02em; max-width:20ch;
-  }
-  .tile.info .statement em{ color:#7f93ff; font-style:normal; }
-  .tile.info .meta{
-    font-family:"Space Mono", monospace; font-size:0.7rem;
-    letter-spacing:0.05em; color:#8b8d95;
-  }
-  .tile.info:hover, .tile.info:focus-visible{ transform:translateY(-4px); }
-
-  /* label plate */
-  .plate{
-    position:absolute; left:0; right:0; bottom:0; z-index:2;
-    padding:1.4rem 1.25rem 1.05rem;
-    background:linear-gradient(to top, rgba(8,9,12,0.92) 8%, rgba(8,9,12,0.55) 55%, rgba(8,9,12,0) 100%);
-    color:#fff;
-    transform:translateY(28%);
-    opacity:0;
-    transition:transform .42s cubic-bezier(.2,.7,.2,1), opacity .42s ease;
-  }
-  .plate .cat{
-    font-family:"Space Mono", monospace;
-    font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase;
-    color:#c9d2ff;
-    display:block; margin-bottom:0.3rem;
-  }
-  .plate .name{
-    font-family:"Archivo", sans-serif;
-    font-weight:700; font-size:1.02rem; line-height:1.15;
+  .mono{ font-family:"JetBrains Mono", monospace; letter-spacing:0.04em; text-transform:uppercase; }
+  .eyebrow{ font-size:0.75rem; color:var(--muted); margin-bottom:1.25rem; }
+  h1{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:600;
+    font-size:clamp(2rem, 6vw, 3.4rem);
+    line-height:1.05;
     letter-spacing:-0.01em;
+    text-align:center;
+    margin-bottom:0.75rem;
   }
-  .idx{
-    position:absolute; top:0.7rem; left:0.85rem; z-index:2;
-    font-family:"Space Mono", monospace;
-    font-size:0.62rem; letter-spacing:0.1em;
-    color:rgba(255,255,255,0.0);
-    mix-blend-mode:difference;
-    transition:color .3s ease;
+  .dot{ color:var(--accent-2); }
+  p.sub{
+    color:var(--muted);
+    text-align:center;
+    max-width:28rem;
+    margin-bottom:3rem;
+    font-size:0.95rem;
   }
-  .tile:hover, .tile:focus-visible{
-    transform:translateY(-4px);
-    box-shadow:0 18px 40px -18px rgba(16,18,24,0.45);
-    outline:none;
+  .options{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0,1fr));
+    gap:1rem;
+    width:100%;
+    max-width:92rem;
   }
-  .tile:hover img, .tile:focus-visible img{ transform:scale(1.045); }
-  .tile:hover .plate, .tile:focus-visible .plate{ transform:translateY(0); opacity:1; }
-  .tile:hover .idx, .tile:focus-visible .idx{ color:rgba(255,255,255,0.65); }
-  .tile:focus-visible{ box-shadow:0 0 0 3px var(--accent), 0 18px 40px -18px rgba(16,18,24,0.45); }
-
-  /* ---------- closing full-bleed banner ---------- */
-  .finale{
-    margin-top:calc(var(--gap) + 0.2rem);
+  .option{
     position:relative;
-    border-radius:var(--radius);
-    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:0.6rem;
+    padding:1.75rem 1.5rem;
     border:1px solid var(--line);
-    box-shadow:0 1px 2px rgba(16,18,24,0.05);
-    display:block; text-decoration:none; color:inherit;
-    transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+    border-radius:6px;
+    background:#121110;
+    text-decoration:none;
+    color:var(--text);
+    overflow:hidden;
+    transition:border-color .25s ease, transform .25s ease;
   }
-  .finale img{ width:100%; height:auto; display:block; aspect-ratio:2442/518; object-fit:cover; }
-  .finale .plate{ transform:translateY(0); opacity:1;
-    background:linear-gradient(to top, rgba(8,9,12,0.72) 0%, rgba(8,9,12,0.0) 60%); }
-  .finale:hover{ transform:translateY(-4px); box-shadow:0 18px 40px -18px rgba(16,18,24,0.45); }
-  .finale:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--accent), 0 18px 40px -18px rgba(16,18,24,0.45); }
-
-  /* ---------- footer ---------- */
+  .option:hover{ transform:translateY(-3px); }
+  .option::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(135deg, var(--accent-1), var(--accent-2) 50%, var(--accent-3));
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .option:hover::before{ opacity:0.08; }
+  .option__index{ font-size:0.7rem; color:var(--muted); }
+  .option__title{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:500;
+    font-size:1.3rem;
+  }
+  .option__desc{ font-size:0.85rem; color:var(--muted); line-height:1.4; }
+  .option__cue{
+    margin-top:0.5rem;
+    font-size:0.7rem;
+    color:var(--accent-2);
+  }
   footer{
-    display:flex; justify-content:space-between; align-items:center;
-    gap:1rem; flex-wrap:wrap;
-    margin-top:2.4rem; padding-top:1.3rem;
-    border-top:1px solid var(--line);
-    font-family:"Space Mono", monospace;
-    font-size:0.7rem; letter-spacing:0.08em; color:var(--muted);
+    margin-top:3rem;
+    color:var(--muted);
+    font-size:0.7rem;
   }
-  footer a{ color:var(--muted); text-decoration:none; }
-  footer a:hover{ color:var(--accent); }
-
-  /* ---------- responsive ---------- */
-  @media (max-width:860px){
-    :root{ --unit:8rem; }
-    .bento{ grid-template-columns:repeat(2, 1fr); }
-    .s-icon{ grid-column:span 2; grid-row:span 2; }
-    .s-hero{ grid-column:span 1; grid-row:span 3; }
-    .s-kmain{ grid-column:span 2; grid-row:span 2; }
-    .s-kset{ grid-column:span 2; grid-row:span 2; }
-    .s-laptop{ grid-column:span 2; grid-row:span 2; }
-    .s-phones{ grid-column:span 1; grid-row:span 2; }
-    .s-quad{ grid-column:span 1; grid-row:span 2; }
-    .s-photo{ grid-column:span 1; grid-row:span 3; }
-    .plate{ transform:translateY(0); opacity:1;
-      background:linear-gradient(to top, rgba(8,9,12,0.85) 12%, rgba(8,9,12,0.2) 60%, rgba(8,9,12,0) 100%); }
+  .featured{
+    width:100%;
+    max-width:92rem;
+    margin-bottom:3rem;
   }
-  @media (max-width:520px){
-    .bento{ grid-template-columns:1fr; grid-auto-rows:auto; }
-    .tile{ grid-column:auto !important; grid-row:auto !important; aspect-ratio:16/10; }
-    .tile img{ position:absolute; }
-    .tile.s-hero, .tile.s-photo{ aspect-ratio:4/5; }
+  .featured__label{
+    font-size:0.7rem;
+    color:var(--accent-2);
+    margin-bottom:0.75rem;
+    text-align:center;
   }
-
-  @media (prefers-reduced-motion:reduce){
-    *{ transition:none !important; }
-    .tile img{ transform:none !important; }
+  .featured__card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+    padding:2.25rem 2.5rem;
+    border:1px solid var(--accent-2);
+    border-radius:8px;
+    background:linear-gradient(135deg, rgba(255,61,46,0.08), rgba(247,183,51,0.05));
+    text-decoration:none;
+    color:var(--text);
+    transition:transform .25s ease;
+  }
+  .featured__card:hover{ transform:translateY(-3px); }
+  .featured__title{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:600;
+    font-size:1.6rem;
+    margin-bottom:0.5rem;
+  }
+  .featured__desc{ color:var(--muted); font-size:0.95rem; max-width:34rem; }
+  .featured__cue{
+    flex-shrink:0;
+    font-size:0.8rem;
+    color:var(--accent-2);
+    border:1px solid var(--accent-2);
+    padding:0.7rem 1.4rem;
+    border-radius:100px;
+  }
+  .divider{
+    width:100%; max-width:92rem;
+    text-align:center;
+    color:var(--muted);
+    font-size:0.7rem;
+    margin-bottom:2rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  @media (max-width:700px){
+    .options{ grid-template-columns:1fr; }
+    .featured__card{ padding:1.75rem; }
   }
 </style>
 </head>
 <body>
-<main class="wrap">
 
-  <header class="masthead">
-    <div class="brand">
-      <h1>Maria Pershin<span class="dot">.</span></h1>
-      <span class="role">Graphic &amp; Visual Designer</span>
-    </div>
-    <div class="intro">
-      <p>Visual systems built where art meets technology — from game iconography and 3D character sets to website redesigns and advertising key visuals.</p>
-      <div class="contact">
-        <a href="mailto:hello@mariapershin.com">hello@mariapershin.com</a>
-        <a href="#work">Selected work ↓</a>
+  <p class="mono eyebrow">[MP_26 — PORTFOLIO]</p>
+  <h1>Maria Pershin<span class="dot">.</span></h1>
+  <p class="sub">The finished portfolio, built from real project work — plus five earlier design explorations below.</p>
+
+  <div class="featured">
+    <p class="mono featured__label">[RECOMMENDED]</p>
+    <a class="featured__card" href="index-real.html">
+      <div>
+        <div class="featured__title">The real portfolio →</div>
+        <div class="featured__desc">Built from actual case studies — game icons, character illustration, website redesigns, Kaspersky and Sportmaster campaigns. Fully responsive, no gimmicks.</div>
       </div>
-    </div>
-  </header>
-
-  <p class="marker" id="work">Selected work — 2021&nbsp;/&nbsp;2025</p>
-
-  <section class="bento">
-
-    <a class="tile dark s-icon fit" href="#">
-      <span class="idx">01</span>
-      <img src="assets/icon-grades.png" alt="Grid of Egyptian-style gold and cobalt game icons across grade tiers" loading="lazy">
-      <div class="plate">
-        <span class="cat">Iconography · 3D</span>
-        <span class="name">Egyptian Slot Icons — Grades &amp; Scalability</span>
-      </div>
+      <span class="featured__cue">[OPEN →]</span>
     </a>
+  </div>
 
-    <a class="tile dark s-hero top" href="#">
-      <span class="idx">02</span>
-      <img src="assets/series-hero.png" alt="3D-rendered Egyptian athlete wearing a golden VR headset, holding a controller" loading="lazy">
-      <div class="plate">
-        <span class="cat">Illustration · Series</span>
-        <span class="name">Athlete Series — Lead Character</span>
-      </div>
+  <p class="mono divider">— earlier explorations —</p>
+
+  <div class="options">
+    <a class="option" href="index-vertical.html">
+      <span class="mono option__index">01</span>
+      <span class="option__title">Vertical scroll</span>
+      <span class="option__desc">Classic top-to-bottom layout with full-bleed image panels and inertia scroll.</span>
+      <span class="mono option__cue">[OPEN →]</span>
     </a>
-
-    <a class="tile s-kmain fit" href="#">
-      <span class="idx">03</span>
-      <img src="assets/kaspersky-main.png" alt="Kaspersky eSIM key visual — a smartphone rising from a stone fortress" loading="lazy">
-      <div class="plate">
-        <span class="cat">Campaign · Key Visual</span>
-        <span class="name">Kaspersky — eSIM Key Visual</span>
-      </div>
+    <a class="option" href="index-horizontal.html">
+      <span class="mono option__index">02</span>
+      <span class="option__title">Horizontal scroll</span>
+      <span class="option__desc">Wheel drives sideways motion through hero, work and contact as one sequence.</span>
+      <span class="mono option__cue">[OPEN →]</span>
     </a>
-
-    <a class="tile s-kset fit" href="#">
-      <span class="idx">04</span>
-      <img src="assets/kaspersky-set.png" alt="Set of four Kaspersky eSIM advertising banners" loading="lazy">
-      <div class="plate">
-        <span class="cat">Campaign · Banner Set</span>
-        <span class="name">Kaspersky — eSIM Series</span>
-      </div>
+    <a class="option" href="test.html">
+      <span class="mono option__index">03</span>
+      <span class="option__title">Animation test — dark</span>
+      <span class="option__desc">Color-block panels, offset photo cards and scrub-linked parallax on the dark ember palette.</span>
+      <span class="mono option__cue">[OPEN →]</span>
     </a>
-
-    <a class="tile phones s-phones" href="#">
-      <span class="idx">05</span>
-      <img src="assets/website-phones.png" alt="Three phone mockups of the responsive Frenchway Travel redesign" loading="lazy">
-      <div class="plate">
-        <span class="cat">Web · Mobile</span>
-        <span class="name">Frenchway Travel — Responsive</span>
-      </div>
+    <a class="option" href="test-light.html">
+      <span class="mono option__index">04</span>
+      <span class="option__title">Animation test — light</span>
+      <span class="option__desc">Same collage system on a warm parchment ground instead of black.</span>
+      <span class="mono option__cue">[OPEN →]</span>
     </a>
-
-    <a class="tile dark s-quad" href="#">
-      <span class="idx">06</span>
-      <img src="assets/series-quad.png" alt="Four 3D athlete characters across basketball, hockey, tennis and baseball" loading="lazy">
-      <div class="plate">
-        <span class="cat">Illustration · Series</span>
-        <span class="name">Athlete Series — Full Cast</span>
-      </div>
+    <a class="option" href="test-bold.html">
+      <span class="mono option__index">05</span>
+      <span class="option__title">Animation test — bold</span>
+      <span class="option__desc">Riso-ink neon — fluorescent pink, cyan and lime on near-black. The unexpected one.</span>
+      <span class="mono option__cue">[OPEN →]</span>
     </a>
+  </div>
 
-    <a class="tile dark s-photo top" href="#">
-      <span class="idx">07</span>
-      <img src="assets/sportmaster-photo.png" alt="Restored lifestyle photo of a couple on a mountain terrace" loading="lazy">
-      <div class="plate">
-        <span class="cat">Retouch · Restoration</span>
-        <span class="name">Sportmaster — Image Recovery</span>
-      </div>
-    </a>
+  <footer class="mono">© 2026 Maria Pershin</footer>
 
-    <a class="tile s-laptop fit" href="#">
-      <span class="idx">08</span>
-      <img src="assets/website-laptop.png" alt="Laptop mockup of the redesigned Frenchway Travel homepage" loading="lazy">
-      <div class="plate">
-        <span class="cat">Web · UX / UI</span>
-        <span class="name">Frenchway Travel — Redesign</span>
-      </div>
-    </a>
-
-    <div class="tile info s-info">
-      <span class="kicker">Approach</span>
-      <p class="statement">Systems, not one-offs — every asset built to <em>scale</em> across grades, formats and screens.</p>
-      <span class="meta">Iconography · Illustration · Web · Campaign</span>
-    </div>
-
-  </section>
-
-  <a class="finale" href="#">
-    <img src="assets/sportmaster-banner.png" alt="Wide Sportmaster × Kronos winter key visual with a couple on a snowy terrace" loading="lazy">
-    <div class="plate">
-      <span class="cat">Campaign · Key Visual</span>
-      <span class="name">Sportmaster × Kronos — Wide Key Visual</span>
-    </div>
-  </a>
-
-  <footer>
-    <span>© 2026 Maria Pershin</span>
-    <span><a href="mailto:hello@mariapershin.com">hello@mariapershin.com</a></span>
-  </footer>
-
-</main>
 </body>
 </html>
