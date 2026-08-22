@@ -95,16 +95,80 @@
     color:var(--muted);
     font-size:0.7rem;
   }
+  .featured{
+    width:100%;
+    max-width:92rem;
+    margin-bottom:3rem;
+  }
+  .featured__label{
+    font-size:0.7rem;
+    color:var(--accent-2);
+    margin-bottom:0.75rem;
+    text-align:center;
+  }
+  .featured__card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+    padding:2.25rem 2.5rem;
+    border:1px solid var(--accent-2);
+    border-radius:8px;
+    background:linear-gradient(135deg, rgba(255,61,46,0.08), rgba(247,183,51,0.05));
+    text-decoration:none;
+    color:var(--text);
+    transition:transform .25s ease;
+  }
+  .featured__card:hover{ transform:translateY(-3px); }
+  .featured__title{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:600;
+    font-size:1.6rem;
+    margin-bottom:0.5rem;
+  }
+  .featured__desc{ color:var(--muted); font-size:0.95rem; max-width:34rem; }
+  .featured__cue{
+    flex-shrink:0;
+    font-size:0.8rem;
+    color:var(--accent-2);
+    border:1px solid var(--accent-2);
+    padding:0.7rem 1.4rem;
+    border-radius:100px;
+  }
+  .divider{
+    width:100%; max-width:92rem;
+    text-align:center;
+    color:var(--muted);
+    font-size:0.7rem;
+    margin-bottom:2rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
   @media (max-width:700px){
     .options{ grid-template-columns:1fr; }
+    .featured__card{ padding:1.75rem; }
   }
 </style>
 </head>
 <body>
 
-  <p class="mono eyebrow">[MP_26 — PROTOTYPES]</p>
+  <p class="mono eyebrow">[MP_26 — PORTFOLIO]</p>
   <h1>Maria Pershin<span class="dot">.</span></h1>
-  <p class="sub">Five working drafts of the same portfolio concept — pick one to explore.</p>
+  <p class="sub">The finished portfolio, built from real project work — plus five earlier design explorations below.</p>
+
+  <div class="featured">
+    <p class="mono featured__label">[RECOMMENDED]</p>
+    <a class="featured__card" href="index-real.html">
+      <div>
+        <div class="featured__title">The real portfolio →</div>
+        <div class="featured__desc">Built from actual case studies — game icons, character illustration, website redesigns, Kaspersky and Sportmaster campaigns. Fully responsive, no gimmicks.</div>
+      </div>
+      <span class="featured__cue">[OPEN →]</span>
+    </a>
+  </div>
+
+  <p class="mono divider">— earlier explorations —</p>
 
   <div class="options">
     <a class="option" href="index-vertical.html">
